@@ -1,0 +1,23 @@
+.page-container {
+  width: 100vw;
+  height: 100vh;
+}
+
+.main-wrapper {
+  height: 100%;
+  margin: 0 15vw;
+  border: 1px solid black;
+}
+
+main {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1;
+}
+
+.book-section-wrapper {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}

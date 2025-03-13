@@ -1,6 +1,6 @@
 .page-container {
   width: 100vw;
-  height: 100vh;
+  height: 100%;
 }
 
 .main-wrapper {
@@ -13,11 +13,72 @@ main {
   height: 100%;
   display: grid;
   grid-template-columns: 1;
+  grid-template-rows: auto;
 }
 
 .book-section-wrapper {
+  display: flex;
   height: 100%;
   width: 100%;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding-top: calc(0.5vh + 2vw)
+}
+
+.book-section-wrapper h2 {
+  font-size: calc(1vh + 1vw);
+}
+
+.book-section {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  column-gap: 20px;
+}
+
+.book-wrapper {
+  display:flex;
+  width: 200px;
+  height: 200px;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px
+}
+
+.book {
   display: flex;
+  width: 100px;
+  height: 150px;
+  position: relative;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  background-color: lightpink;
+}
+
+.read-mark {
+  display: flex;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  align-items: center;
+  justify-content: center;
+  background-color: aqua;
+}
+
+.interaction-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px
+}
+
+.interaction-buttons button {
+  width: 35px;
+  height: 35px;
+}
+
+.interaction-buttons button i {
+  font-size: 18px
 }

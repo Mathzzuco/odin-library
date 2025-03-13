@@ -11,3 +11,8 @@ function Book(author, title, gender, pages, read) {
         this.read = !this.read;
     }
 }
+
+function addBookToLibrary(author, title, gender, pages, read) {
+    const book = new Book(author, title, gender, pages, read);
+    library.push(book);
+}

@@ -5,7 +5,7 @@
 
 .main-wrapper {
   height: 100%;
-  margin: 0 15vw;
+  margin: 0 12vw;
   border: 1px solid black;
 }
 
@@ -37,10 +37,10 @@ main {
 }
 
 .book-wrapper {
-  display:flex;
-  width: 200px;
+  display:grid;
+  width: 220px;
   height: 200px;
-  flex-direction: row;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
   gap: 5px
 }
@@ -68,9 +68,23 @@ main {
   background-color: aqua;
 }
 
+.book-information-interaction-wrapper {
+  display: flex;
+  max-height: 150px;
+  flex-direction: column;
+  gap:40px
+}
+
+.book-information {
+  width: 110px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
 .interaction-buttons {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 10px
 }
 

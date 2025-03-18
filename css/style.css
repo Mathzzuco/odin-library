@@ -1,48 +1,79 @@
+:root {
+  /* --adventure-background: #E3963E; */
+  --adventure-background:#354152;
+  --mystery-background:#1f2937;
+  /* --mystery-background:#1f2937; */
+  --biography-background:#354152;
+  --book-card-background: #008b8b;
+  --book-background: #ffb6c1;
+  --read-mark-background: cyan;
+}
+
+body {
+  font-family: sans-serif;
+}
+
 .page-container {
-  width: 100vw;
   height: 100%;
+  background-color: #bbbbbb;
 }
 
 .main-wrapper {
   height: 100%;
-  margin: 0 12vw;
-  border: 1px solid black;
+  margin: 0 10vw;
+  /* border: 1px solid black; */
 }
 
 main {
   height: 100%;
   display: grid;
-  grid-template-columns: 1;
   grid-template-rows: auto;
+}
+
+.adventure {
+  background-color: var(--adventure-background);
+}
+
+.mystery {
+  background-color: var(--mystery-background);
+}
+
+.biography {
+  background-color: var(--biography-background);
 }
 
 .book-section-wrapper {
   display: flex;
-  height: 100%;
   width: 100%;
+  height: 100%;
   flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  padding-top: calc(0.5vh + 2vw)
+  gap: calc(0.5vh + 2vw);
+  padding: calc(0.5vh + 2vw) 0;
 }
 
 .book-section-wrapper h2 {
-  font-size: calc(1vh + 1vw);
+  align-self: center;
+  font-size: calc(1vh + 2vw);
+  color: #d6d4d4;
 }
 
 .book-section {
   display: grid;
   grid-template-columns: repeat(4, auto);
-  column-gap: 20px;
+  gap: 20px;
+  padding: 0 20px
 }
 
 .book-wrapper {
   display:grid;
-  width: 220px;
+  width: 240px;
   height: 200px;
   grid-template-columns: 1fr 1fr;
   align-items: center;
-  gap: 5px
+  gap: 8px;
+  border-radius: 8px;
+  padding: 20px;
+  background-color: var(--book-card-background);
 }
 
 .book {
@@ -53,7 +84,8 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: lightpink;
+  border-radius: 8px;
+  background-color: var(--book-background);
 }
 
 .read-mark {
@@ -61,11 +93,12 @@ main {
   width: 30px;
   height: 30px;
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 4px;
+  left: 4px;
   align-items: center;
   justify-content: center;
-  background-color: aqua;
+  border-radius: 4px;
+  background-color: var(--read-mark-background);
 }
 
 .book-information-interaction-wrapper {
@@ -95,4 +128,9 @@ main {
 
 .interaction-buttons button i {
   font-size: 18px
+}
+
+.add-book-section {
+  width: 100%;
+  height: 100%;
 }

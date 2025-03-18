@@ -10,6 +10,22 @@
     <script src="js/script.js" defer></script>
 </head>
 <body>
+    <dialog>
+        <form method="dialog">
+            <input type="text" name="title">
+            <input type="text" name="author">
+            <select name="gender">
+                <option value="adventure">Adventure</option>
+                <option value="mystery">Mystery</option>
+                <option value="biography">Biography</option>
+            </select>
+            <input type="number" name="pages" min="1" max="10000">
+            <input type="radio" name="read" value="read">
+            <input type="radio" name="read" value="not-read">
+            <button type="submit">Add Book</button>
+            <button type="reset">Cancel</button>
+        </form>
+    </dialog>
     <div class="page-container">
         <div class="main-wrapper">
             <main>
@@ -59,7 +75,7 @@
                 <div class="mystery book-section-wrapper">
                     <h2>Mystery</h2>
                     <div id="mystery" class="book-section">
-                        <div class="book-wrapper">
+                        <!-- <div class="book-wrapper">
                             <div class="book">
                                 
                             </div>
@@ -78,7 +94,7 @@
                             <div class="book">
                                 
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="biography book-section-wrapper">

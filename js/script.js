@@ -1,9 +1,12 @@
 const library = [];
-
+const dialog = document.getElementById("dialog");
 const button = document.querySelector(".add-book-btn");
+
 button.addEventListener("click", function() {
-    addBookToLibrary("creative title", "creative author", "mystery", 100, false);
-    loadLibrary();
+    
+    // addBookToLibrary("creative title", "creative author", "mystery", 100, false);
+    // loadLibrary();
+    dialog.showModal();
 })
 
 function Book(title, author, gender, pages, read) {

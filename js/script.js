@@ -52,25 +52,20 @@ function addBookToLibrary(title, author, gender, pages, read) {
 }
 
 function loadLibrary() {
-    if (library.length > 0) {
-        const bookElements = document.querySelectorAll(".book-wrapper");
-        bookElements.forEach((bookElement) => {
-            bookElement.remove();
-        })
-        library.forEach((book) => {
-            const section = document.getElementById(book.gender);
-            loadBook(book, section);
-        })
-    } else {
-        console.log("No books Available");
-    }
+    const bookElements = document.querySelectorAll(".book-wrapper");
+    bookElements.forEach((bookElement) => {
+        bookElement.remove();
+    })
+    library.forEach((book) => {
+        const section = document.getElementById(book.gender);
+        loadBook(book, section);
+    })
 }
 
 // book is the book object, section is the element from html with the id of the book gender
 function loadBook(book, section) {
     const bookWrapper = document.createElement("div");
     bookWrapper.classList.add("book-wrapper");
-    bookWrapper.setAttribute("book-id", book.id);
 
     const bookElement = document.createElement("div");
     bookElement.classList.add("book");
@@ -113,7 +108,10 @@ function loadBook(book, section) {
     interactionButtons.classList.add("interaction-buttons");
 
     const readButton = document.createElement("button");
-    readButton.setAttribute("book-id", book.id);
+    readButton.addEventListener("click", function() {
+        book.changeRead();
+        loadLibrary();
+    });
 
     const readButtonIcon = document.createElement("i");
     // icons are fa fa-check to read book and fa fa-times to unread book
@@ -127,8 +125,14 @@ function loadBook(book, section) {
     }
 
     const deleteButton = document.createElement("button");
-    deleteButton.setAttribute("book-id", book.id);
-    
+    deleteButton.addEventListener("click", function() {
+        if (confirm(`Are you sure you want to delete ${book.title} By ${book.author}?`)) {
+            library.splice(searchBookPosition(book.id), 1);
+            loadLibrary();
+        } 
+        
+    });
+
     const deleteButtonIcon = document.createElement("i");
     deleteButtonIcon.classList.add("fa", "fa-trash-o");
 
@@ -153,4 +157,12 @@ function loadBook(book, section) {
 
     readButton.appendChild(readButtonIcon);
     deleteButton.appendChild(deleteButtonIcon);
+}
+
+function searchBookPosition(bookId) {
+    return library.indexOf(searchBook(bookId))
+}
+
+function searchBook(bookId) {
+    return library.find(({id}) => id == bookId);
 }

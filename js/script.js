@@ -1,13 +1,37 @@
 const library = [];
-const dialog = document.getElementById("dialog");
-const button = document.querySelector(".add-book-btn");
 
-button.addEventListener("click", function() {
+const dialog = document.getElementById("dialog");
+const addButton = document.querySelector(".add-book-btn");
+const form = document.querySelector("form");
+
+addButton.addEventListener("click", function() {
     
     // addBookToLibrary("creative title", "creative author", "mystery", 100, false);
     // loadLibrary();
     dialog.showModal();
 })
+
+form.addEventListener("submit", function (e) {
+    // e.preventDefault();
+    const formData = new FormData(form);
+    const formBook = Object.fromEntries(formData);
+
+    if (formBook.read === "true") {
+        formBook.read = true;
+    } else {
+        formBook.read = false;
+    }
+
+    addBookToLibrary(formBook.title, formBook.author, formBook.gender, formBook.pages, formBook.read);
+    loadLibrary();
+    form.reset();
+    closeForm();
+})
+
+// function used on a onclick on html
+function closeForm() {
+    dialog.close();
+}
 
 function Book(title, author, gender, pages, read) {
     this.id = crypto.randomUUID();
@@ -16,6 +40,7 @@ function Book(title, author, gender, pages, read) {
     this.gender = gender;
     this.pages = pages;
     this.read = read;
+
     this.changeRead = function() {
         this.read = !this.read;
     }
@@ -23,16 +48,21 @@ function Book(title, author, gender, pages, read) {
 
 function addBookToLibrary(title, author, gender, pages, read) {
     const book = new Book(title, author, gender, pages, read);
-    console.log(book);
     library.push(book);
 }
 
 function loadLibrary() {
     if (library.length > 0) {
-        library.forEach((e) => {
-            const section = document.getElementById(e.gender);
-            loadBook(e, section);
+        const bookElements = document.querySelectorAll(".book-wrapper");
+        bookElements.forEach((bookElement) => {
+            bookElement.remove();
         })
+        library.forEach((book) => {
+            const section = document.getElementById(book.gender);
+            loadBook(book, section);
+        })
+    } else {
+        console.log("No books Available");
     }
 }
 
@@ -65,20 +95,26 @@ function loadBook(book, section) {
 
     const bookTitleText = document.createElement("span");
     bookTitleText.classList.add("title");
-    bookTitleText.innerHTML = book.title + " <br>";
+    bookTitleText.innerHTML = book.title;
 
     const bookAuthorText = document.createElement("span");
     bookAuthorText.classList.add("author");
-    bookAuthorText.innerHTML = book.author + " <br>";
+    bookAuthorText.innerHTML = "By " + book.author;
 
     const bookPagesText = document.createElement("span");
-    bookAuthorText.classList.add("pages");
-    bookPagesText.innerHTML = book.pages + " pages";
+    bookPagesText.classList.add("pages");
+    if (book.pages > 1) {
+        bookPagesText.innerHTML = book.pages + " pages";
+    } else {
+        bookPagesText.innerHTML = book.pages + " page";
+    }
 
     const interactionButtons = document.createElement("div");
     interactionButtons.classList.add("interaction-buttons");
 
     const readButton = document.createElement("button");
+    readButton.setAttribute("book-id", book.id);
+
     const readButtonIcon = document.createElement("i");
     // icons are fa fa-check to read book and fa fa-times to unread book
     readButtonIcon.classList.add("fa");
@@ -91,6 +127,8 @@ function loadBook(book, section) {
     }
 
     const deleteButton = document.createElement("button");
+    deleteButton.setAttribute("book-id", book.id);
+    
     const deleteButtonIcon = document.createElement("i");
     deleteButtonIcon.classList.add("fa", "fa-trash-o");
 

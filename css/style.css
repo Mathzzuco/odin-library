@@ -6,6 +6,7 @@
   --book-card-background: #008b8b;
   --book-background: #ffb6c1;
   --read-mark-background: cyan;
+  --red-background: #fd4c4c;
 }
 
 body {
@@ -147,10 +148,27 @@ main {
 }
 
 .book-information {
+  display: grid;
   width: 110px;
+  row-gap: 5px;
+}
+
+.book-information .title, .book-information .author {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+}
+
+.book-information .title {
+  color: var(--title-color);
+}
+
+.book-information .author {
+  color: var(--subtitle-color);
+}
+
+.book-information .pages {
+  color: var(--title-color);
 }
 
 .interaction-buttons {
@@ -210,6 +228,19 @@ main {
   color: var(--subtitle-color);
 }
 
+dialog[open] {
+  display: flex;
+  width: 30vw;
+  height: 50vh;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  border: none;
+  box-shadow: 0 0 10px var(--title-color);
+  color: var(--title-color);
+  background-color: var(--darker-background);
+}
+
 form {
   display: flex;
   flex-direction: column;
@@ -217,6 +248,42 @@ form {
   gap: 10px;
 }
 
+form input[type=text], form input[type=number], select {
+  padding-left: 6px;
+  border-radius: 8px;
+  border: none;
+  color: var(--subtitle-color);
+  font-weight: bold;
+  background-color: var(--dark-background);
+}
+
+form label:has(> input[type=text]), form label:has(> input[type=number]){
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
 form label:has(> input[type=radio]) {
   display: block;
+}
+
+.form-buttons button {
+  width: 80px;
+  height: 30px;
+  font-size: calc(0.5vw + 1vh);
+  font-weight: bolder;
+  cursor: pointer;
+  border: 1px solid white;
+  border-radius: 6px;
+  
+}
+
+.form-buttons button[type="submit"] {
+  color: var(--title-color);
+  background-color: var(--book-card-background);
+}
+
+.form-buttons button[type="reset"] {
+  color: var(--title-color);
+  background-color: var(--red-background);
 }

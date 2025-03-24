@@ -5,14 +5,11 @@ const addButton = document.querySelector(".add-book-btn");
 const form = document.querySelector("form");
 
 addButton.addEventListener("click", function() {
-    
-    // addBookToLibrary("creative title", "creative author", "mystery", 100, false);
-    // loadLibrary();
     dialog.showModal();
 })
 
 form.addEventListener("submit", function (e) {
-    // e.preventDefault();
+    e.preventDefault();
     const formData = new FormData(form);
     const formBook = Object.fromEntries(formData);
 
@@ -28,7 +25,7 @@ form.addEventListener("submit", function (e) {
     closeForm();
 })
 
-// function used on a onclick on html
+// function used on an onclick on html
 function closeForm() {
     dialog.close();
 }
@@ -52,16 +49,19 @@ function addBookToLibrary(title, author, gender, pages, read) {
 }
 
 function loadLibrary() {
+    // removes all books from html
     const bookElements = document.querySelectorAll(".book-wrapper");
     bookElements.forEach((bookElement) => {
         bookElement.remove();
     })
+    // adds all books from the array to html
     library.forEach((book) => {
         const section = document.getElementById(book.gender);
         loadBook(book, section);
     })
 }
 
+// this function creates the book and it's information in html
 // book is the book object, section is the element from html with the id of the book gender
 function loadBook(book, section) {
     const bookWrapper = document.createElement("div");
